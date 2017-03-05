@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">AttendanceSystem</string>
+    <string name="title_activity_create_student">CreateStudentActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main__faculty">MainActivity_Faculty</string>
+    <string name="title_activity_main__student">MainActivity_Student</string>
+    <string name="title_activity_post_feed">PostFeed</string>
+    <string name="title_activity_post_attendance">PostAttendance</string>
+    <string name="title_activity_view_attendance">ViewAttendanceActivity</string>
+
+    <string-array name="branches_list">
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>English</item>
+        <item>Mathematics</item>
+        <item>Biology</item>
+    </string-array>
+    <string-array name="year_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="hours_list">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+</resources>

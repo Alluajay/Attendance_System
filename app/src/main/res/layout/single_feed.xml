@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        android:id="@+id/card_single_feed"
+        app:cardUseCompatPadding="true"
+        android:padding="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="55"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_head"
+                    android:textSize="20dp"
+                    android:text="Heading"
+                    android:maxLines="2"
+                    android:textColor="@color/txt_color"
+                    android:fontFamily="sans-serif-smallcaps"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="45"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:id="@+id/txt_created"
+                    android:textSize="18dp"
+                    android:text="created"
+                    android:fontFamily="sans-serif-smallcaps"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:maxLines="4"
+                android:id="@+id/txt_desc"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Description related to the feed.it will be posted the students"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
