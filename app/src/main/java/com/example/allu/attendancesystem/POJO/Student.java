@@ -1,4 +1,4 @@
-package com.example.allu.attendancesystem.ContentClass;
+package com.example.allu.attendancesystem.pojo;
 
 /**
  * Created by allu on 2/16/17.

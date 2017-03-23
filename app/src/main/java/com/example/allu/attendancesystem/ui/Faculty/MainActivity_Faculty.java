@@ -1,12 +1,9 @@
 package com.example.allu.attendancesystem.ui.Faculty;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.allu.attendancesystem.ContentClass.Feed;
+import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.FeedAdapter;
 import com.example.allu.attendancesystem.utils.Navigation_Faculty;
@@ -64,22 +60,6 @@ public class MainActivity_Faculty extends AppCompatActivity
         FeedList.setHasFixedSize(false);
 
         ArrayList<Feed> feeds = new ArrayList<>();
-       /* Feed feed = new Feed("Serial test 1","The serial test 1 is scheduled on 20th of this month.the timetable will be circulated to the students soon" +
-                ". Prepare well for the exam");
-        Feed feed1 = new Feed("Serial test 2","The serial test 2 is scheduled on 20th of this month.the timetable will be circulated to the students soon" +
-                ". Prepare well for the exam");
-        Feed feed2 = new Feed("Serial test 3","The serial test 3 is scheduled on 20th of this month.the timetable will be circulated to the students soon" +
-                ". Prepare well for the exam");
-        Feed feed3 = new Feed("Serial test 4","The serial test 4 is scheduled on 20th of this month.the timetable will be circulated to the students soon" +
-                ". Prepare well for the exam");
-        Feed feed4 = new Feed("Serial test 5","The serial test 5 is scheduled on 20th of this month.the timetable will be circulated to the students soon" +
-                ". Prepare well for the exam");
-        feeds.add(feed);
-        feeds.add(feed1);
-        feeds.add(feed2);
-        feeds.add(feed3);
-        feeds.add(feed4);*/
-
         feedAdapter = new FeedAdapter(this,feeds);
         FeedList.setAdapter(feedAdapter);
 
@@ -107,6 +87,7 @@ public class MainActivity_Faculty extends AppCompatActivity
     }
 
     void fetchList(){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","getall");
@@ -117,6 +98,7 @@ public class MainActivity_Faculty extends AppCompatActivity
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
+                    utils.CloseProgress();
                     if(jsonObject.get("status").equals("success")){
                         JSONArray records = jsonObject.getJSONArray("records");
                         for(int i=0;i<records.length();i++){
@@ -133,12 +115,14 @@ public class MainActivity_Faculty extends AppCompatActivity
                     utils.Toast(jsonObject.getString("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    utils.CloseProgress();
                     utils.Toast(e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
                 utils.Toast(volleyError.toString());
             }
         });

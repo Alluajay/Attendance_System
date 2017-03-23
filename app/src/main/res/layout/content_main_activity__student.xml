@@ -35,14 +35,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:text="Name : "
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
                     android:id="@+id/txt_name"
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
             </LinearLayout>
             <LinearLayout
@@ -55,14 +55,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:text="Reg no : "
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
                     android:id="@+id/txt_rno"
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
             </LinearLayout>
             <LinearLayout
@@ -75,14 +75,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:text="Dept : "
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
                     android:id="@+id/txt_dept"
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
             </LinearLayout>
             <LinearLayout
@@ -95,14 +95,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:text="Year : "
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
                     android:id="@+id/txt_year"
-                    android:textSize="24dp"
+                    android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
             </LinearLayout>
         </LinearLayout>
@@ -111,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Feeds"
-        android:textSize="28dp"
+        android:textSize="@dimen/stud_desc_var"
         android:layout_margin="4dp"
         android:fontFamily="sans-serif-condensed"/>
     <android.support.v7.widget.RecyclerView

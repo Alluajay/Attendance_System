@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.allu.attendancesystem.ContentClass.Attendance;
+import com.example.allu.attendancesystem.pojo.Attendance;
 import com.example.allu.attendancesystem.R;
 
 import java.util.ArrayList;

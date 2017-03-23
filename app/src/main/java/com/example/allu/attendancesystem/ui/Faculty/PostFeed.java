@@ -83,6 +83,7 @@ public class PostFeed extends AppCompatActivity
     }
 
     void UploadFeed(String title,String feed){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","create");
@@ -95,6 +96,7 @@ public class PostFeed extends AppCompatActivity
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.FeedUrl, param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                utils.CloseProgress();
                 try {
                     utils.Toast(jsonObject.getString("message"));
                     if(jsonObject.getString("status").equals("success")){
@@ -108,6 +110,7 @@ public class PostFeed extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
                 utils.Toast(volleyError.toString());
             }
         });

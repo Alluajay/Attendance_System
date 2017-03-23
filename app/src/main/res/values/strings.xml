@@ -13,11 +13,22 @@
     <string name="title_activity_view_attendance">ViewAttendanceActivity</string>
 
     <string-array name="branches_list">
-        <item>Physics</item>
-        <item>Chemistry</item>
-        <item>English</item>
-        <item>Mathematics</item>
-        <item>Biology</item>
+        <item>BA Tamil</item>
+        <item>BA English</item>
+        <item>BBA</item>
+        <item>B.Com</item>
+        <item>B.Com CA</item>
+        <item>B.Com ECommerce</item>
+        <item>B.Sc Maths</item>
+        <item>B.Sc Physics</item>
+        <item>B.Sc Computer Science</item>
+        <item>B.Sc IT</item>
+        <item>BCA</item>
+        <item>M.Sc Maths</item>
+        <item>M.Sc CS and IT</item>
+        <item>M.Com CA</item>
+        <item>MA English</item>
+
     </string-array>
     <string-array name="year_list">
         <item>1</item>

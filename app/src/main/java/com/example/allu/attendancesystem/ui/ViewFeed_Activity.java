@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.allu.attendancesystem.ContentClass.Feed;
+import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.utils.Utils;
 

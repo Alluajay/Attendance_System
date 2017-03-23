@@ -17,7 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.allu.attendancesystem.ContentClass.Student;
+import com.example.allu.attendancesystem.pojo.Student;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.Attendance_Adapter;
 import com.example.allu.attendancesystem.utils.URL;
@@ -94,6 +94,7 @@ public class EnterAttendance extends AppCompatActivity {
     }
 
     void GetStudents(){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","get_students");
@@ -106,6 +107,7 @@ public class EnterAttendance extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
+                    utils.CloseProgress();
                     Log.e(Tag,jsonObject.toString());
                     if(jsonObject.get("status").equals("success")){
                         JSONArray array = jsonObject.getJSONArray("records");
@@ -120,10 +122,12 @@ public class EnterAttendance extends AppCompatActivity {
                             attendance_adapter.notifyDataSetChanged();
                         }
                     }else {
+                        utils.CloseProgress();
                         utils.Toast(jsonObject.getString("message"));
                         utils.Goto(PostAttendance.class);
                     }
                 } catch (JSONException e) {
+                    utils.CloseProgress();
                     utils.Toast(e.toString());
                     e.printStackTrace();
                 }
@@ -131,6 +135,7 @@ public class EnterAttendance extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
                 Log.e(Tag,volleyError.toString());
                 utils.Toast(volleyError.toString());
             }

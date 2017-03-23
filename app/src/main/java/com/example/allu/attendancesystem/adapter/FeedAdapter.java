@@ -9,17 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.allu.attendancesystem.ContentClass.Feed;
+import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.ui.ViewFeed_Activity;
 import com.example.allu.attendancesystem.utils.Utils;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by allu on 2/15/17.

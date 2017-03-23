@@ -1,6 +1,7 @@
 
 package com.example.allu.attendancesystem.ui;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     String Tag = "LoginActivity";
     RequestQueue queue;
 
+
+
     EditText Username,Password,Regno;
     Button Login_staff,Login_students;
 
@@ -43,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences(Utils.pref_string,MODE_PRIVATE);
 
         queue = Volley.newRequestQueue(this);
-
-
 
         utils = new Utils(this);
         if(preferences.contains("uid")){
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void StaffLogin(String username,String pass){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","login");
@@ -103,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
+                    utils.CloseProgress();
                     Log.e(Tag,jsonObject.toString());
                     if(jsonObject.get("status").equals("success")){
                         SharedPreferences.Editor editor = preferences.edit();
@@ -110,22 +113,29 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
                         utils.Toast("Login success");
                         utils.Goto(MainActivity_Faculty.class);
+                    }else if (jsonObject.getInt("code") == 150){
+                        Password.setText("");
+                        utils.Toast("Invalid Username and password");
                     }
                 } catch (JSONException e) {
+                    utils.CloseProgress();
+                    Password.setText("");
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
+                Password.setText("");
                 utils.Toast("Error : "+volleyError.toString());
             }
         });
-
         queue.add(request);
     }
 
     void StudentLogin(String rno){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","login_student");
@@ -137,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Log.e(Tag,jsonObject.toString());
+                utils.CloseProgress();
                 try {
                     if(jsonObject.get("status").equals("success")){
                         SharedPreferences.Editor editor = preferences.edit();
@@ -148,8 +159,13 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
                         utils.Toast("Login success");
                         utils.Goto(MainActivity_Student.class);
+                    }else if(jsonObject.getInt("code") == 150) {
+                        utils.Toast("Invalid Reg no.");
+                        Regno.setText("");
                     }
                 } catch (JSONException e) {
+                    utils.CloseProgress();
+                    Regno.setText("");
                     utils.Toast(e.toString());
                     e.printStackTrace();
                 }
@@ -157,6 +173,8 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
+                Regno.setText("");
                 utils.Toast("Error : "+volleyError.toString());
             }
         });

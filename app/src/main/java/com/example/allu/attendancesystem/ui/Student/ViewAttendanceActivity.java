@@ -2,13 +2,10 @@ package com.example.allu.attendancesystem.ui.Student;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.allu.attendancesystem.ContentClass.Attendance;
+import com.example.allu.attendancesystem.pojo.Attendance;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.Student_attendance_adapter;
 import com.example.allu.attendancesystem.utils.Navigation_Student;
@@ -59,8 +56,6 @@ public class ViewAttendanceActivity extends AppCompatActivity
 
         preferences = this.getSharedPreferences(Utils.pref_string,MODE_PRIVATE);
         utils = new Utils(this);
-        utils.Toast("Under construction");
-
         Recy_attendance = (RecyclerView)findViewById(R.id.recy_atten);
         Recy_attendance.setHasFixedSize(false);
         Recy_attendance.setItemAnimator(new DefaultItemAnimator());
@@ -83,6 +78,7 @@ public class ViewAttendanceActivity extends AppCompatActivity
     }
 
     void getAttendance(){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","get_atten");
@@ -93,6 +89,7 @@ public class ViewAttendanceActivity extends AppCompatActivity
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.StudentUrl, param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                utils.CloseProgress();
                 try {
                     Log.e(Tag,jsonObject.toString());
                     utils.Toast(jsonObject.getString("message"));
@@ -120,7 +117,9 @@ public class ViewAttendanceActivity extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
+                utils.CloseProgress();
+                utils.Toast(volleyError.toString());
+                Log.e(Tag,volleyError.toString());
             }
         });
         queue.add(request);

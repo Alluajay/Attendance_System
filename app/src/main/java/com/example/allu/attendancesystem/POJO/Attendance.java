@@ -1,4 +1,4 @@
-package com.example.allu.attendancesystem.ContentClass;
+package com.example.allu.attendancesystem.pojo;
 
 import android.os.Parcel;
 import android.os.Parcelable;

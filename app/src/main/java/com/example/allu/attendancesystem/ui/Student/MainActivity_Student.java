@@ -2,12 +2,9 @@ package com.example.allu.attendancesystem.ui.Student;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.allu.attendancesystem.ContentClass.Feed;
+import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.FeedAdapter;
 import com.example.allu.attendancesystem.utils.Navigation_Student;
@@ -93,6 +90,7 @@ public class MainActivity_Student extends AppCompatActivity
     }
 
     void fetchList(){
+        utils.ShowProgress();
         JSONObject param = new JSONObject();
         try {
             param.put("option","getall");
@@ -102,6 +100,7 @@ public class MainActivity_Student extends AppCompatActivity
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.FeedUrl, param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                utils.CloseProgress();
                 try {
                     if(jsonObject.get("status").equals("success")){
                         JSONArray records = jsonObject.getJSONArray("records");
@@ -125,6 +124,7 @@ public class MainActivity_Student extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                utils.CloseProgress();
                 utils.Toast(volleyError.toString());
             }
         });

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -16,7 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.allu.attendancesystem.ContentClass.Student;
+import com.example.allu.attendancesystem.pojo.Student;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.utils.URL;
 import com.example.allu.attendancesystem.utils.Utils;

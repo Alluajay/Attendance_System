@@ -1,5 +1,6 @@
 package com.example.allu.attendancesystem.utils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,10 +17,14 @@ public class Utils {
 
     Context mContext;
     SharedPreferences preferences;
+    ProgressDialog progressDialog;
 
     public Utils(Context context){
         mContext = context;
         preferences = mContext.getSharedPreferences(pref_string,Context.MODE_PRIVATE);
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
     }
 
     public void Goto(Class cls){
@@ -55,5 +60,17 @@ public class Utils {
 
     public void Toast(String msg){
         Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void ShowProgress(){
+        if(!progressDialog.isShowing()){
+            progressDialog.show();
+        }
+    }
+
+    public void CloseProgress(){
+        if(progressDialog.isShowing()){
+            progressDialog.cancel();
+        }
     }
 }
