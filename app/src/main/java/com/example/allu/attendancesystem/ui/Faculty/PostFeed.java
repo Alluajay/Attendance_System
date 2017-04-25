@@ -93,7 +93,7 @@ public class PostFeed extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.FeedUrl, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, utils.getFeedURL(), param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 utils.CloseProgress();

@@ -44,7 +44,8 @@
             android:name=".ui.Student.ViewAttendanceActivity"
             android:label="@string/title_activity_view_attendance"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.ViewFeed_Activity"></activity>
+        <activity android:name=".ui.ViewFeed_Activity" />
+        <activity android:name=".ui.SettingsActivity"></activity>
     </application>
 
 </manifest>

@@ -33,14 +33,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="35"
                     android:text="Name : "
                     android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="70"
+                    android:layout_weight="65"
                     android:id="@+id/txt_name"
                     android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
@@ -53,14 +53,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="35"
                     android:text="Reg no : "
                     android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="70"
+                    android:layout_weight="65"
                     android:id="@+id/txt_rno"
                     android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
@@ -73,14 +73,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="35"
                     android:text="Dept : "
                     android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="70"
+                    android:layout_weight="65"
                     android:id="@+id/txt_dept"
                     android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
@@ -93,15 +93,35 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="35"
                     android:text="Year : "
                     android:textSize="@dimen/stud_desc_var"
                     android:fontFamily="sans-serif-condensed"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="70"
+                    android:layout_weight="65"
                     android:id="@+id/txt_year"
+                    android:textSize="@dimen/stud_det_var"
+                    android:fontFamily="sans-serif-condensed"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:text="Percentage : "
+                    android:textSize="@dimen/stud_desc_var"
+                    android:fontFamily="sans-serif-condensed"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="65"
+                    android:id="@+id/txt_percent"
                     android:textSize="@dimen/stud_det_var"
                     android:fontFamily="sans-serif-condensed"/>
             </LinearLayout>

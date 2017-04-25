@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.FeedAdapter;
+import com.example.allu.attendancesystem.ui.SettingsActivity;
 import com.example.allu.attendancesystem.utils.Navigation_Student;
 import com.example.allu.attendancesystem.utils.URL;
 import com.example.allu.attendancesystem.utils.Utils;
@@ -43,7 +44,7 @@ public class MainActivity_Student extends AppCompatActivity
 
     RecyclerView FeedList;
     FeedAdapter feedAdapter;
-    TextView txt_name,txt_rno,txt_year,txt_dept;
+    TextView txt_name,txt_rno,txt_year,txt_dept,txt_percent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainActivity_Student extends AppCompatActivity
         txt_rno = (TextView)findViewById(R.id.txt_rno);
         txt_year = (TextView)findViewById(R.id.txt_year);
         txt_dept = (TextView)findViewById(R.id.txt_dept);
+        txt_percent = (TextView)findViewById(R.id.txt_percent);
 
         txt_name.setText(preferences.getString("name",""));
         txt_rno.setText(preferences.getString("rno",""));
@@ -78,6 +80,7 @@ public class MainActivity_Student extends AppCompatActivity
         FeedList.setAdapter(feedAdapter);
 
         fetchList();
+        fetchPercentage();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,7 +100,7 @@ public class MainActivity_Student extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.FeedUrl, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, utils.getFeedURL(), param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 utils.CloseProgress();
@@ -131,6 +134,37 @@ public class MainActivity_Student extends AppCompatActivity
         queue.add(request);
     }
 
+    void fetchPercentage(){
+        utils.ShowProgress();
+        JSONObject param = new JSONObject();
+        try {
+            param.put("option","get_net");
+            param.put("rno",preferences.getString("rno",""));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,utils.getStudentURL(), param, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if(jsonObject.getString("status").equals("success")) {
+                        utils.Toast(jsonObject.getString("message"));
+                        txt_percent.setText(jsonObject.getDouble("percent")*100+"");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+        queue.add(request);
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -155,6 +189,9 @@ public class MainActivity_Student extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             utils.Logout_stud();
+            return true;
+        }else if(id == R.id.action_settings){
+            utils.Goto(SettingsActivity.class);
             return true;
         }
 

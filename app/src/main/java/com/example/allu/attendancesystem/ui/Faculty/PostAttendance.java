@@ -118,7 +118,6 @@ public class PostAttendance extends AppCompatActivity
         txt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 DatePickerDialog dialog = new DatePickerDialog(PostAttendance.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {

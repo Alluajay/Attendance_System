@@ -27,6 +27,34 @@ public class Utils {
         progressDialog.setCancelable(false);
     }
 
+    public void setIP(String IP){
+        SharedPreferences preferences = mContext.getSharedPreferences(pref_string,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("url",IP);
+        editor.apply();
+    }
+
+    public String getIP(){
+        SharedPreferences preferences = mContext.getSharedPreferences(pref_string,Context.MODE_PRIVATE);
+        return preferences.getString("url","192.168.1.101:8888");
+    }
+
+    public String getFeedURL(){
+        String HOST = "http://"+getIP()+"/Att_sys/";
+        return HOST+"feed.php";
+    }
+
+    public String getStaffURL(){
+        String HOST = "http://"+getIP()+"/Att_sys/";
+        return HOST+"User_login.php";
+    }
+
+    public String getStudentURL(){
+        String HOST = "http://"+getIP()+"/Att_sys/";
+        return HOST+"student_be.php";
+    }
+
+
     public void Goto(Class cls){
         Intent i=new Intent(mContext,cls);
         mContext.startActivity(i);

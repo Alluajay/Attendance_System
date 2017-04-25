@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.allu.attendancesystem.pojo.Feed;
 import com.example.allu.attendancesystem.R;
 import com.example.allu.attendancesystem.adapter.FeedAdapter;
+import com.example.allu.attendancesystem.ui.SettingsActivity;
 import com.example.allu.attendancesystem.utils.Navigation_Faculty;
 import com.example.allu.attendancesystem.utils.URL;
 import com.example.allu.attendancesystem.utils.Utils;
@@ -94,7 +95,7 @@ public class MainActivity_Faculty extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.FeedUrl, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, utils.getFeedURL(), param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
@@ -143,6 +144,9 @@ public class MainActivity_Faculty extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             utils.Logout();
+            return true;
+        }else if(id == R.id.action_settings){
+            utils.Goto(SettingsActivity.class);
             return true;
         }
 

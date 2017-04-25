@@ -48,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         utils = new Utils(this);
+
+        utils.setIP("192.168.1.101:8888");
+
         if(preferences.contains("uid")){
             utils.Goto(MainActivity_Faculty.class);
         }else if(preferences.contains("id")){
@@ -101,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.StaffUrl, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,utils.getStaffURL(), param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
@@ -143,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL.StudentUrl, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, utils.getStudentURL(), param, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Log.e(Tag,jsonObject.toString());
